@@ -6,7 +6,20 @@ from rest_framework.response import Response
 from apps.users.permissions import IsOwnerOrReadOnly
 from apps.users.serializers import *
 from apps.users.models import *
+from rest_framework.pagination import PageNumberPagination
 
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.filters import SearchFilter, OrderingFilter
+
+from django_filters.rest_framework import DjangoFilterBackend
+from apps.users.service import DeveloperFilter
+
+
+class Developerpagination(PageNumberPagination):
+    #Количество записей для пагинации 
+    page_size = 20
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
 class ListCreateAPIView(generics.ListCreateAPIView):
     queryset = Direction.objects.all()
@@ -23,7 +36,23 @@ class CRUDirectionAPIView(generics.RetrieveUpdateDestroyAPIView):
 class ListDeveloperAPIView(generics.ListAPIView):
     queryset = Developer.objects.all()
     serializer_class = DeveloperMinSerializer
+
     permission_classes = [IsAuthenticatedOrReadOnly]
+    pagination_class = Developerpagination
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    # filter
+    filterset_class = DeveloperFilter
+    # Поиск
+    search_fields = [
+            'city',
+            'direction',
+            'lvl',
+            'gender',
+            ]       
+    # сортировка                                       
+    # ordering_fields = [
+    #             '',   
+    #             ]
 
 
 class DetailDeveloperAPIView(generics.RetrieveAPIView):

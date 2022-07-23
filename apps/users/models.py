@@ -84,6 +84,8 @@ class Developer(User):
     address = models.CharField(
         max_length=255
     )
+    # work_experience = models.CharField(max_length=20)
+
     birth_date = models.DateField()
     direction = models.ManyToManyField(
         Direction, 
