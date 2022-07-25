@@ -26,7 +26,6 @@ urlpatterns = [
     path('user/', include('apps.users.urls')),
     path('review/', include('apps.review.urls')),
     path('favorite/', include('apps.favorite.urls')),
-    path('auth/', include('djoser.urls')), # djoser регистрация
     path('auth/', include('djoser.urls.authtoken')), # djoser вход и вызод из системы
     path('swagger(?P<format>\.json|\.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

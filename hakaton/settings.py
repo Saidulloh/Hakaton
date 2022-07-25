@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     # drf
     'django',
     'rest_framework',
-    'rest_framework.authtoken',
     'djoser',   
     'django_filters',
     'phonenumber_field',
