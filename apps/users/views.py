@@ -67,7 +67,6 @@ class DeleteDeveloperAPIView(generics.DestroyAPIView):
 class CreateDeveloperAPIView(generics.CreateAPIView):
     queryset = Developer.objects.all()
     serializer_class = DeveloperFullSerializer 
-    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class UpdateDeveloperAPIView(generics.UpdateAPIView):
