@@ -15,6 +15,3 @@ class DeveloperFilter(filters.FilterSet):
     class Meta:
         model = Developer
         fields = ['city', 'lvl', 'gender']
-
-
-

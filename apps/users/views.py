@@ -2,16 +2,14 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from apps.review.models import Review
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 
 from apps.users.permissions import IsOwnerOrReadOnly
 from apps.users.serializers import *
 from apps.users.models import *
-from rest_framework.pagination import PageNumberPagination
-
-from rest_framework.pagination import PageNumberPagination
-from rest_framework.filters import SearchFilter, OrderingFilter
-
-from django_filters.rest_framework import DjangoFilterBackend
 from apps.users.service import DeveloperFilter
 
 
@@ -49,10 +47,6 @@ class ListDeveloperAPIView(generics.ListAPIView):
             'lvl',
             'gender',
             ]       
-    # сортировка                                       
-    # ordering_fields = [
-    #             '',   
-    #             ]
 
 
 class DetailDeveloperAPIView(generics.RetrieveAPIView):
