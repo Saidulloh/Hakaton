@@ -1,6 +1,5 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
-from apps.review.models import Review
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.pagination import PageNumberPagination
@@ -84,3 +83,17 @@ class CRUDClientAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     permission_classes = [IsOwnerOrReadOnly or IsAdminUser]
+
+
+class ExaminationUserApi(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserNameSerializer
+
+    def post(self, request, *args, **kwargs):
+        name = request.data.get('username')
+        users = User.objects.all()
+        for i in users:
+            if i.username == name:
+                return Response({"Result": False})
+
+        return Response({"Result": True})

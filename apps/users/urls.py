@@ -15,4 +15,6 @@ urlpatterns = [
     # client
     path('client/', ListCreateClientAPIView.as_view()),
     path('client/<int:pk>/', CRUDClientAPIView.as_view()),
+    # search
+    path('search/', ExaminationUserApi.as_view())
 ]
