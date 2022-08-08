@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from apps.users.models import *
-from apps.review.serializers import ReviewSerializer
 
 
 class DirectionSerializer(serializers.ModelSerializer):
@@ -12,7 +11,7 @@ class DirectionSerializer(serializers.ModelSerializer):
 
 class DeveloperMinSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Developer
+        model = User
         fields = [
             'id',
             'username',
@@ -23,7 +22,7 @@ class DeveloperMinSerializer(serializers.ModelSerializer):
 
 class DeveloperFullSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Developer
+        model = User
         fields = [
             'id',
             'avatar',
@@ -34,7 +33,6 @@ class DeveloperFullSerializer(serializers.ModelSerializer):
             'phone_number',
             'address',
             'city',
-            'birth_date',
             'direction',
             'lvl',
             'time_create',
@@ -51,39 +49,12 @@ class DeveloperFullSerializer(serializers.ModelSerializer):
         return user
 
 
-class DeveloperShowSerializer(serializers.ModelSerializer):
-    review_dev = ReviewSerializer(many=True, read_only=True)
-    class Meta:
-        model = Developer
-        fields = [
-            'id',
-            'avatar',
-            'username',
-            'first_name',
-            'last_name',
-            'email',
-            'phone_number',
-            'address',
-            'city',
-            'birth_date',
-            'direction',
-            'lvl',
-            'time_create',
-            'gender',
-            'nationality',
-            'password',
-            'review_dev',
-        ]
-
-
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Client
+        model = User
         fields = [
             'id',
-            'first_name',
-            'last_name',
-            'avatar',
+            'username',
             'email',
             'phone_number',
             'company',

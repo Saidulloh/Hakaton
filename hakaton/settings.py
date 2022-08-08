@@ -38,19 +38,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'drf_yasg',
 
     # drf
     'django',
     'rest_framework',
+    'rest_framework.authtoken',
     'djoser',   
     'django_filters',
     'phonenumber_field',
     "corsheaders",
+    'rest_framework_swagger',
 
     # apps
-    'apps.favorite',
-    'apps.review',
+    'apps.favorites',
+    'apps.reviews',
     'apps.users',
 ]
 
@@ -79,6 +80,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {  
+                'staticfiles': 'django.templatetags.static',
+            },
         },
     },
 ]
@@ -154,4 +158,6 @@ REST_FRAMEWORK = {
     ],
     # for filters
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    # for swagger
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema', 
 }

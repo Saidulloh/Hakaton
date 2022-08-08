@@ -18,6 +18,7 @@ class Developerpagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 100
 
+
 class ListCreateAPIView(generics.ListCreateAPIView):
     queryset = Direction.objects.all()
     serializer_class = DirectionSerializer
@@ -31,7 +32,7 @@ class CRUDirectionAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ListDeveloperAPIView(generics.ListAPIView):
-    queryset = Developer.objects.all()
+    queryset = User.objects.all()
     serializer_class = DeveloperMinSerializer
 
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -49,13 +50,13 @@ class ListDeveloperAPIView(generics.ListAPIView):
 
 
 class DetailDeveloperAPIView(generics.RetrieveAPIView):
-    queryset = Developer.objects.all()
-    serializer_class = DeveloperShowSerializer
+    queryset = User.objects.all()
+    serializer_class = DeveloperFullSerializer
     permission_classes = [IsOwnerOrReadOnly or IsAdminUser]
 
 
 class DeleteDeveloperAPIView(generics.DestroyAPIView):
-    queryset = Developer.objects.all()
+    queryset = User.objects.all()
     serializer_class = DeveloperFullSerializer
     permission_classes = [IsAdminUser]
 
@@ -64,7 +65,7 @@ class DeleteDeveloperAPIView(generics.DestroyAPIView):
 
 
 class CreateDeveloperAPIView(generics.CreateAPIView):
-    queryset = Developer.objects.all()
+    queryset = User.objects.all()
     serializer_class = DeveloperFullSerializer 
 
 
@@ -75,12 +76,12 @@ class UpdateDeveloperAPIView(generics.UpdateAPIView):
 
 
 class ListCreateClientAPIView(generics.ListCreateAPIView):
-    queryset = Client.objects.all()
+    queryset = User.objects.all()
     serializer_class = ClientSerializer
 
 
 class CRUDClientAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Client.objects.all()
+    queryset = User.objects.all()
     serializer_class = ClientSerializer
     permission_classes = [IsOwnerOrReadOnly or IsAdminUser]
 
@@ -96,4 +97,4 @@ class ExaminationUserApi(generics.CreateAPIView):
             if i.username == name:
                 return Response({"Result": False})
 
-        return Response({"Result": True})
+        return Response({"Result": True}) 

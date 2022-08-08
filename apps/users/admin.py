@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from apps.users.models import Developer, Client
+from apps.users.models import User
 
-admin.site.register(Developer)
-admin.site.register(Client)
+admin.site.register(User)
